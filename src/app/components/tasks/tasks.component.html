@@ -1,3 +1,10 @@
-<p *ngFor="let count of tasks">
-    {{ count.text }}
-</p>
+<app-task-item 
+*ngFor="let count of tasks" 
+[task] = "count">
+</app-task-item>
+<!-- here task is a property defined in task-item component. we are passing the data stored in 
+    count (all task objects) to task item component because we need 
+    a. more modularity component wise
+    b. task item will reflect all the tasks separately
+    we will now design task item template to reflect the data of every individual task
+-->
