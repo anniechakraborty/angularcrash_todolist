@@ -19,6 +19,9 @@ export class TasksComponent {
   ngOnInit() : void {
     // we have used the provider passed to the constructor here because ngOnInit is a lifecycle 
     // function that gets called immediately
-    this.tasks = this.taskService.getTasks();
+    this.taskService.getTasks().subscribe((tasks) => (this.tasks = tasks));
+    // since we have used an observable in the service, we need to subscribe to an observable
+    // like JS promise, we need to get the data received from the observable and assign it to 
+    // our local tasks property as that is the property which is used in the template to display the data.
   }
 }
