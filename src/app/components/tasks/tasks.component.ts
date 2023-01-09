@@ -24,4 +24,13 @@ export class TasksComponent {
     // like JS promise, we need to get the data received from the observable and assign it to 
     // our local tasks property as that is the property which is used in the template to display the data.
   }
+
+  delTask(task : Task){
+    this.taskService.deleteTask(task).subscribe(() => (this.tasks = this.tasks.filter(t => t.id !== task.id)) )
+  }
+  toggleTask(task : Task){
+    task.reminder = !task.reminder;
+    // console.log(task);
+    this.taskService.toggleTask(task).subscribe();
+  }
 }

@@ -1,6 +1,8 @@
 <app-task-item 
 *ngFor="let count of tasks" 
-[task] = "count">
+[task] = "count"
+(onDeleteTaskEvent) = "delTask(count)"
+(onToggleReminder) = "toggleTask(count)">
 </app-task-item>
 <!-- here task is a property defined in task-item component. we are passing the data stored in 
     count (all task objects) to task item component because we need 

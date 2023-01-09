@@ -10,6 +10,11 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 // import { TaskList } from 'src/app/mock-tasks'; no longer needed
 import { Task } from 'src/app/Tasks';
 
+const httpOtions = {
+  headers : new HttpHeaders({
+    'Content-Type' : 'application/json'
+  })
+}
 
 @Injectable({
   providedIn: 'root'
@@ -31,5 +36,20 @@ export class TaskService {
 
     // now we will fetch task from the backend
     return this.http.get<Task[]>(this.apiUrl);
+  }
+
+  deleteTask(task : Task) : Observable<Task>{
+    // to delete a task we need to send a delete request to our api url but we also need to send our task id, so:
+    const url = `${this.apiUrl}/${task.id}`;
+    return this.http.delete<Task>(url);
+  }
+
+  toggleTask(taskToToggle : Task) : Observable<Task>{
+    const url = `${this.apiUrl}/${taskToToggle.id}`;
+    // since we are making an update in the server, this is a PUT request
+    return this.http.put<Task>(url, taskToToggle, httpOtions);
+    // since we are sending data (taskToToggle), we also need to send some headers along with the content type.
+    // for this, we use HttpHeaders. we have created a variable globally called httpOptions that is a JS object 
+    // with the key headers whose value is HttpHeaders.
   }
 }
