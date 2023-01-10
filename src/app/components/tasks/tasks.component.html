@@ -1,5 +1,8 @@
-<app-add-task></app-add-task>
-
+<app-add-task (onAddTask)="addTask($event)"></app-add-task>
+<!-- since we can't directly pass the task here as we are not looping through them with ngFor, 
+    we have used $event to pass the data.
+ -->
+ 
 <app-task-item 
 *ngFor="let count of tasks" 
 [task] = "count"

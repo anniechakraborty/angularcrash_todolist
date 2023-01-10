@@ -33,4 +33,8 @@ export class TasksComponent {
     // console.log(task);
     this.taskService.toggleTask(task).subscribe();
   }
+
+  addTask(task : Task){
+    this.taskService.addTask(task).subscribe((task) => (this.tasks.push(task)));
+  }
 }

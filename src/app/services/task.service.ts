@@ -52,4 +52,8 @@ export class TaskService {
     // for this, we use HttpHeaders. we have created a variable globally called httpOptions that is a JS object 
     // with the key headers whose value is HttpHeaders.
   }
+
+  addTask(taskToAdd : Task) : Observable<Task>{
+    return this.http.post<Task>(this.apiUrl, taskToAdd, httpOtions);
+  }
 }
